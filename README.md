@@ -73,6 +73,39 @@ will automatically links in the other two libraries.
 You can also checkout [MLC LLM](https://github.com/mlc-ai/mlc-llm)
 for as an example of complete LLM chat application integrations.
 
+### Compile as Static Libraries
+
+#### ARM64/X86_64
+
+- prepare a ARM64 host
+
+- install compile env on the host, i.e. update rust and add cargo download image web path (refer to [rust install](https://rsproxy.cn/#getStarted)), make sure that `rustc`、`cargo`、`rustup` is installed.
+
+- (optinal) compile rust code
+```bash
+cd rust
+cargo clean
+cargo build
+```
+
+- compile full code
+```bash
+mkdir build && cd build
+cmake ..
+make
+```
+
+#### link
+
+- copy `build/libtokenizers_c.a` `build/libtokenizers_cpp.a` `build/sentencepiece/libsentencepiece.a`、`build/release/libtokenizers_c.a` and `/include` to your workspace
+
+- refer to the following code to build your CMakeLists.txt
+```
+include_directories(tokenizers_cpp/include)
+link_directories(tokenizers_cpp/lib)
+target_link_libraries(xxx tokenizers_cpp -ltokenizers_c)
+```
+
 ## Javascript Support
 
 We use emscripten to expose tokenizer-cpp to wasm and javascript.
