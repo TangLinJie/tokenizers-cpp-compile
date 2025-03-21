@@ -77,7 +77,7 @@ for as an example of complete LLM chat application integrations.
 
 #### ARM64/X86_64
 
-- prepare a ARM64 host
+- prepare a ARM64/X86_64 host
 
 - install compile env on the host, i.e. update rust and add cargo download image web path (refer to [rust install](https://rsproxy.cn/#getStarted)), make sure that `rustc`、`cargo`、`rustup` is installed.
 
